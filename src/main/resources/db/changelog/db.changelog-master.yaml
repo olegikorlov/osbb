@@ -1,0 +1,5 @@
+databaseChangeLog: #параметр в котором находятся миграции
+  - include: # список активных миграций
+      file: classpath:db/changelog/changeset/001-dbchangelog.yaml # путь к файлу миграции
+  - include: # список активных миграций
+      file: classpath:db/changelog/changeset/002-dbchangelog.yaml # путь к файлу миграции

@@ -1,0 +1,124 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2021-12-23-002
+      author: Oleg Orlov
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartment_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: area
+                  type: FLOAT8
+              - column:
+                  constraints:
+                    nullable: false
+                  name: number_of_residents
+                  type: INTEGER
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: apartment_owner_id_fkey
+                    references: person(id)
+                  name: owner_id
+                  type: BIGINT
+            tableName: apartment
+
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: role_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: name
+                  type: VARCHAR(255)
+            tableName: role
+
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+#                    primaryKeyName: user_account_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: login
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    foreignKeyName: user_account_role_id_fkey
+                    references: role(id)
+                  name: role_id
+                  type: BIGINT
+            tableName: user_account
+
+#        - addForeignKeyConstraint:
+#            baseColumnNames: owner_id
+#            baseTableName: apartment
+#            constraintName: apartment_owner_id_fkey
+#            deferrable: false
+#            initiallyDeferred: false
+#            onDelete: NO ACTION
+#            onUpdate: NO ACTION
+#            referencedColumnNames: id
+#            referencedTableName: person
+#            validate: true
+#
+#        - addUniqueConstraint:
+#            columnNames: login
+#            constraintName: user_account_login_key
+#            tableName: user_account
+#
+#        - addForeignKeyConstraint:
+#            baseColumnNames: role_id
+#            baseTableName: user_account
+#            constraintName: user_account_role_id_fkey
+#            deferrable: false
+#            initiallyDeferred: false
+#            onDelete: NO ACTION
+#            onUpdate: NO ACTION
+#            referencedColumnNames: id
+#            referencedTableName: role
+#            validate: true
+#        - addUniqueConstraint:
+#            columnNames: name
+#            constraintName: role_name_key
+#            tableName: role
