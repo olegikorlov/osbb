@@ -11,12 +11,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "service_providers")
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class ServiceProvider {
+
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -28,11 +29,9 @@ public class ServiceProvider {
     @Column(name = "current_tariff", precision = 10, scale = 2)
     private BigDecimal currentTariff;
 
-    @ManyToMany(mappedBy = "serviceProviders")
-    private Set<Apartment> apartments = new HashSet<>();
+//    @ManyToMany(mappedBy = "serviceProviders")
+//    private Set<Apartment> apartments = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    @MapsId
+    @OneToOne(mappedBy = "serviceProvider")
     private BankAccount bankAccount;
 }
