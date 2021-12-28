@@ -11,12 +11,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
  */
 @Entity
-@Table(name = "user_account")
+@Table(name = "users")
 @NoArgsConstructor
 @Setter
 @Getter
@@ -45,6 +47,24 @@ public class User implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_apartment",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "apartments_id")}
+    )
+    private Set<Apartment> apartments = new HashSet<>();
+
+    public void addApartment(Apartment apartment) {
+        this.apartments.add(apartment);
+        apartment.getUsers().add(this);
+    }
+
+    public void removeApartment(Apartment apartment) {
+        this.apartments.remove(apartment);
+        apartment.getUsers().remove(this);
+    }
 
     public User(String login, String firstName, String lastName) {
         this.login = login;
