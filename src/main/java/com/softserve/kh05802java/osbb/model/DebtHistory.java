@@ -8,6 +8,8 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "debt_history")
@@ -34,4 +36,8 @@ public class DebtHistory {
 
     @Column(name = "debt_after", nullable = false)
     private BigDecimal after;
+
+    @ManyToMany(mappedBy= "personal_accounts")
+    private Set<PersonalAccount> stores = new HashSet<>();
+
 }

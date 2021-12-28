@@ -7,14 +7,16 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "person_accounts")
+@Table(name = "personal_accounts")
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class PersonalAccounts {
+public class PersonalAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,4 +26,10 @@ public class PersonalAccounts {
 
     @Column(name = "debt_amount", nullable = false)
     private BigDecimal debtAmount;
+
+    @ManyToMany
+    @JoinTable(name = "personal_account_debt_history",
+            joinColumns = { @JoinColumn(name = "debt_history_id") },
+            inverseJoinColumns = { @JoinColumn(name = "personal_account_id") })
+    private Set<DebtHistory> products = new HashSet<DebtHistory>();
 }
