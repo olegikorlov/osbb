@@ -3,6 +3,8 @@ package com.softserve.kh05802java.osbb.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
@@ -28,4 +30,10 @@ public class Apartment {
 
     @Column(name = "number_of_residents")
     private int numberOfResidents;
+
+    @ManyToMany
+    @JoinTable(name = "apartment_service_providers",
+            joinColumns = @JoinColumn(name = "apartment_id", referencedColumnName = "service_providers_id"))
+    private List<ServiceProvider> serviceProviders = new ArrayList<>();
+
 }
