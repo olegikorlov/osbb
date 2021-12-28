@@ -31,8 +31,8 @@ public class ServiceProvider {
     @ManyToMany(mappedBy = "serviceProviders")
     private Set<Apartment> apartments = new HashSet<>();
 
-   /* @OneToOne
+    @OneToOne
     @JoinColumn(name = "id")
     @MapsId
-    private BankAccount bankAccount;*/
+    private BankAccount bankAccount;
 }
