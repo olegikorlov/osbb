@@ -28,7 +28,7 @@ public class Role implements GrantedAuthority {
     @OneToMany(mappedBy = "role")
     private List<User> users;
 
-    public Role(User user) {
+    public Role(RoleType user) {
 
     }
 

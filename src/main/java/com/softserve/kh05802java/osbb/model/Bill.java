@@ -12,6 +12,7 @@ import java.time.Instant;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
