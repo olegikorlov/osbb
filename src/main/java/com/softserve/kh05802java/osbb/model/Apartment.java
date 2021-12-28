@@ -18,7 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 public class Apartment {
 
     @Id
@@ -51,6 +50,7 @@ public class Apartment {
     @ManyToMany(mappedBy = "apartments")
     private Set<User> users;
 
+/*
     @ManyToMany
     @JoinTable(
             name = "apartment_service_provider",
@@ -64,6 +64,7 @@ public class Apartment {
             )}
     )
     private Set<ServiceProvider> serviceProviders = new HashSet<>();
+*/
 
     @Override
     public boolean equals(Object o) {
