@@ -36,14 +36,14 @@ public class Apartment {
     @ManyToOne
     @JoinColumn(
             name = "apartment_house_address_id",
-            foreignKey = @ForeignKey(name = "apartment_apartment_house_address_id_fkey")
+            foreignKey = @ForeignKey(name = "apartments_apartment_house_address_id_fkey")
     )
     private ApartmentHouseAddress apartmentHouseAddress;
 
     @ManyToOne
     @JoinColumn(
             name = "owner_id",
-            foreignKey = @ForeignKey(name = "apartment_owner_id_fkey")
+            foreignKey = @ForeignKey(name = "apartments_owner_id_fkey")
     )
     private Person owner;
 
