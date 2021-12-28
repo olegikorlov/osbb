@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -49,6 +50,20 @@ public class Apartment {
 
     @ManyToMany(mappedBy = "apartments")
     private Set<User> users;
+
+    @ManyToMany
+    @JoinTable(
+            name = "apartment_service_provider",
+            joinColumns = {@JoinColumn(
+                    name = "apartment_id",
+                    foreignKey = @ForeignKey(name = "apartment_service_provider_apartment_id_fkey")
+            )},
+            inverseJoinColumns = {@JoinColumn(
+                    name = "service_provider_id",
+                    foreignKey = @ForeignKey(name = "apartment_service_provider_service_provider_id_fkey")
+            )}
+    )
+    private Set<ServiceProvider> serviceProviders = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
