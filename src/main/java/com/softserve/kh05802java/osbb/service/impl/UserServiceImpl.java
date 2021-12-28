@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
  */
-@Service("accountServiceImpl")
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;

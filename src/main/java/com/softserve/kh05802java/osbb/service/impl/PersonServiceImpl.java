@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
  */
-@Service("personServiceImpl")
+@Service
 public class PersonServiceImpl implements PersonService {
 
     private final PersonRepository repository;
@@ -25,7 +25,7 @@ public class PersonServiceImpl implements PersonService {
         if (person != null) {
             return repository.save(person);
         }
-        throw  new NullEntityReferenceException("Person can't be \"null\"");
+        throw new NullEntityReferenceException("Person can't be \"null\"");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class PersonServiceImpl implements PersonService {
             readById(account.getId());
             return repository.save(account);
         }
-        throw  new NullEntityReferenceException("Person can't be \"null\"");
+        throw new NullEntityReferenceException("Person can't be \"null\"");
     }
 
     @Override
