@@ -12,7 +12,11 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "roles")
+@Table(
+        name = "roles",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "roles_name_key", columnNames = "name")
+        })
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,7 +27,7 @@ public class Role implements GrantedAuthority {
     private Long id;
 
     @NotBlank(message = "The 'name' cannot be empty")
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "role")
