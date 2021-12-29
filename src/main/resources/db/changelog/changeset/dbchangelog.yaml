@@ -1,156 +1,583 @@
 databaseChangeLog:
-- changeSet:
-    id: 1640261362186-1
-    author: oleg (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: apartment_pkey
-            name: id
-            type: BIGINT
-        - column:
-            name: area
-            type: FLOAT8
-        - column:
-            name: number_of_residents
-            type: INTEGER
-        - column:
-            name: owner_id
-            type: BIGINT
-        tableName: apartment
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: person_pkey
-            name: id
-            type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-            name: first_name
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: last_name
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: middle_name
-            type: VARCHAR(255)
-        tableName: person
-- changeSet:
-    id: 1640261362186-3
-    author: oleg (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: role_pkey
-            name: id
-            type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-            name: name
-            type: VARCHAR(255)
-        tableName: role
-- changeSet:
-    id: 1640261362186-4
-    author: oleg (generated)
-    changes:
-    - createTable:
-        columns:
-        - column:
-            autoIncrement: true
-            constraints:
-              nullable: false
-              primaryKey: true
-              primaryKeyName: user_account_pkey
-            name: id
-            type: BIGINT
-        - column:
-            constraints:
-              nullable: false
-            name: first_name
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: last_name
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: login
-            type: VARCHAR(255)
-        - column:
-            constraints:
-              nullable: false
-            name: password
-            type: VARCHAR(255)
-        - column:
-            name: role_id
-            type: BIGINT
-        tableName: user_account
-- changeSet:
-    id: 1640261362186-5
-    author: oleg (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: owner_id
-        baseTableName: apartment
-        constraintName: apartment_owner_id_fkey
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: person
-        validate: true
-- changeSet:
-    id: 1640261362186-6
-    author: oleg (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: role_id
-        baseTableName: user_account
-        constraintName: user_account_role_id_fkey
-        deferrable: false
-        initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
-        referencedColumnNames: id
-        referencedTableName: role
-        validate: true
-- changeSet:
-    id: 1640261362186-7
-    author: oleg (generated)
-    changes:
-    - addUniqueConstraint:
-        columnNames: name
-        constraintName: uk_8sewwnpamngi6b1dwaa88askk
-        tableName: role
-- changeSet:
-    id: 1640261362186-8
-    author: oleg (generated)
-    changes:
-    - addUniqueConstraint:
-        columnNames: login
-        constraintName: uk_plpggm55i6uhyv404q6pyu0ub
-        tableName: user_account
+  - changeSet:
+      id: 1640756093662-1
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartment_house_addresses_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: building
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: city
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: street
+                  type: VARCHAR(255)
+            tableName: apartment_house_addresses
+  - changeSet:
+      id: 1640756093662-2
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartments_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: area
+                  type: FLOAT8
+              - column:
+                  name: number
+                  type: INTEGER
+              - column:
+                  name: number_of_residents
+                  type: INTEGER
+              - column:
+                  name: apartment_house_address_id
+                  type: BIGINT
+              - column:
+                  name: owner_id
+                  type: BIGINT
+            tableName: apartments
+  - changeSet:
+      id: 1640756093662-3
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: bills_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: amount
+                  type: numeric(10, 2)
+              - column:
+                  name: formation_date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: period
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  name: purpose_of_payment
+                  type: VARCHAR(255)
+              - column:
+                  name: tariff
+                  type: numeric(10, 2)
+            tableName: bills
+  - changeSet:
+      id: 1640756093662-4
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: contacts_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: is_verified
+                  type: BOOLEAN
+              - column:
+                  name: value
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+            tableName: contacts
+  - changeSet:
+      id: 1640756093662-5
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: debt_histories_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: debt_after
+                  type: numeric(19, 2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: amount
+                  type: numeric(19, 2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: debt_before
+                  type: numeric(19, 2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: date
+                  type: TIMESTAMP WITHOUT TIME ZONE
+              - column:
+                  constraints:
+                    nullable: false
+                  name: reason
+                  type: VARCHAR(255)
+            tableName: debt_histories
+  - changeSet:
+      id: 1640756093662-6
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: personal_accounts_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: debt_amount
+                  type: numeric(19, 2)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+            tableName: personal_accounts
+  - changeSet:
+      id: 1640756093662-7
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: persons_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: middle_name
+                  type: VARCHAR(255)
+            tableName: persons
+  - changeSet:
+      id: 1640756093662-8
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: roles_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: name
+                  type: VARCHAR(255)
+            tableName: roles
+  - changeSet:
+      id: 1640756093662-9
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: service_providers_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: current_tariff
+                  type: numeric(10, 2)
+              - column:
+                  name: edrpou
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+            tableName: service_providers
+  - changeSet:
+      id: 1640756093662-10
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: users_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: first_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: login
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: role_id
+                  type: BIGINT
+            tableName: users
+  - changeSet:
+      id: 1640756093662-11
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartment_service_provider_pkey
+                  name: apartment_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartment_service_provider_pkey
+                  name: service_provider_id
+                  type: BIGINT
+            tableName: apartment_service_provider
+  - changeSet:
+      id: 1640756093662-12
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: bank_accounts_pkey
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: bank_name
+                  type: VARCHAR(255)
+              - column:
+                  name: iban
+                  type: VARCHAR(255)
+              - column:
+                  name: mfo
+                  type: BIGINT
+            tableName: bank_accounts
+  - changeSet:
+      id: 1640756093662-13
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: personal_account_debt_history_pkey
+                  name: personal_account_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: personal_account_debt_history_pkey
+                  name: debt_history_id
+                  type: BIGINT
+            tableName: personal_account_debt_history
+  - changeSet:
+      id: 1640756093662-14
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_apartment_pkey
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_apartment_pkey
+                  name: apartment_id
+                  type: BIGINT
+            tableName: user_apartment
+  - changeSet:
+      id: 1640756093662-15
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: apartment_house_address_id
+            baseTableName: apartments
+            constraintName: apartments_apartment_house_address_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: apartment_house_addresses
+            validate: true
+  - changeSet:
+      id: 1640756093662-16
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: apartment_id
+            baseTableName: apartment_service_provider
+            constraintName: apartment_service_provider_apartment_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: apartments
+            validate: true
+  - changeSet:
+      id: 1640756093662-17
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: owner_id
+            baseTableName: apartments
+            constraintName: apartments_owner_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: persons
+            validate: true
+  - changeSet:
+      id: 1640756093662-18
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: apartment_id
+            baseTableName: user_apartment
+            constraintName: user_apartment_apartment_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: apartments
+            validate: true
+  - changeSet:
+      id: 1640756093662-19
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: contacts
+            constraintName: contacts_user_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1640756093662-20
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: debt_history_id
+            baseTableName: personal_account_debt_history
+            constraintName: personal_account_debt_history_debt_history_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: debt_histories
+            validate: true
+  - changeSet:
+      id: 1640756093662-21
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: personal_account_id
+            baseTableName: personal_account_debt_history
+            constraintName: personal_account_debt_history_personal_account_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: personal_accounts
+            validate: true
+  - changeSet:
+      id: 1640756093662-22
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: users
+            constraintName: users_role_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: roles
+            validate: true
+  - changeSet:
+      id: 1640756093662-23
+      author: oleg (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: name
+            constraintName: roles_name_key
+            tableName: roles
+  - changeSet:
+      id: 1640756093662-24
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: service_provider_id
+            baseTableName: apartment_service_provider
+            constraintName: apartment_service_provider_service_provider_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: service_providers
+            validate: true
+  - changeSet:
+      id: 1640756093662-25
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: id
+            baseTableName: bank_accounts
+            constraintName: bank_accounts_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: service_providers
+            validate: true
+  - changeSet:
+      id: 1640756093662-26
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: user_apartment
+            constraintName: user_apartment_user_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: users
+            validate: true
+  - changeSet:
+      id: 1640756093662-27
+      author: oleg (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: login
+            constraintName: users_login_key
+            tableName: users
 
+  - changeSet:
+      id: 2021-12-23-003
+      author: Oleg Orlov
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: name
+                  value: "MANAGER"
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: name
+                  value: "USER"

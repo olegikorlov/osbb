@@ -11,12 +11,18 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
  */
 @Entity
-@Table(name = "user_account")
+@Table(
+        name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "users_login_key", columnNames = "login")
+        })
 @NoArgsConstructor
 @Setter
 @Getter
@@ -28,7 +34,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Pattern(regexp = "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}", message = "Must be a valid e-mail address")
-    @Column(name = "login", nullable = false, unique = true)
+    @Column(name = "login", nullable = false)
     private String login;
 
     //    @Pattern(regexp = "(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}",
@@ -43,8 +49,38 @@ public class User implements UserDetails {
     private String lastName = "";
 
     @ManyToOne
-    @JoinColumn(name = "role_id")
+    @JoinColumn(
+            name = "role_id",
+            foreignKey = @ForeignKey(name = "users_role_id_fkey")
+    )
     private Role role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_apartment",
+            joinColumns = {@JoinColumn(
+                    name = "user_id",
+                    foreignKey = @ForeignKey(name = "user_apartment_user_id_fkey")
+            )},
+            inverseJoinColumns = {@JoinColumn(
+                    name = "apartment_id",
+                    foreignKey = @ForeignKey(name = "user_apartment_apartment_id_fkey")
+            )}
+    )
+    private Set<Apartment> apartments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Contact> contacts;
+
+    public void addApartment(Apartment apartment) {
+        this.apartments.add(apartment);
+        apartment.getUsers().add(this);
+    }
+
+    public void removeApartment(Apartment apartment) {
+        this.apartments.remove(apartment);
+        apartment.getUsers().remove(this);
+    }
 
     public User(String login, String firstName, String lastName) {
         this.login = login;

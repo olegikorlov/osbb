@@ -6,12 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author <a href="mailto:info@olegorlov.com">Oleg Orlov</a>
  */
 @Entity
-@Table(name = "person")
+@Table(name = "persons")
 @NoArgsConstructor
 @Setter
 @Getter
@@ -30,5 +31,8 @@ public class Person {
 
     @Column(name = "last_name", nullable = false)
     private String lastName = "";
+
+    @OneToMany(mappedBy = "owner")
+    private Set<Apartment> apartments;
 
 }

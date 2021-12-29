@@ -28,4 +28,4 @@ databaseChangeLog:
                     nullable: false
                   name: middle_name
                   type: VARCHAR(255)
-            tableName: person
+            tableName: persons

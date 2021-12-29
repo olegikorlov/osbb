@@ -1,5 +1,23 @@
 databaseChangeLog: #параметр в котором находятся миграции
+  #  - property:
+  #      name: table_name
+  #      value: "role"
+
+#  - includeAll:
+#      path: classpath*:/db/changelog/changeset/
+#      errorIfMissingOrEmpty: false
+
   - include: # список активных миграций
-      file: classpath:db/changelog/changeset/001-dbchangelog.yaml # путь к файлу миграции
-  - include: # список активных миграций
-      file: classpath:db/changelog/changeset/002-dbchangelog.yaml # путь к файлу миграции
+      file: classpath:/db/changelog/changeset/dbchangelog.yaml # путь к файлу миграции
+#  - include: # список активных миграций
+#      file: classpath:/db/changelog/changeset/001-dbchangelog.yaml # путь к файлу миграции
+#  - include:
+#      file: classpath:/db/changelog/changeset/002-dbchangelog.yaml
+#  - include:
+#      file: classpath:/db/changelog/changeset/003-dbchangelog.yaml
+#  - include:
+#      file: classpath:/db/changelog/changeset/004-dbchangelog.yaml
+#  - include:
+#      file: classpath:/db/changelog/changeset/005-dbchangelog.yaml
+#  - include:
+#      file: classpath:/db/changelog/changeset/006-dbchangelog.yaml
