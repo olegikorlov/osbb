@@ -5,12 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Transient;
-import javax.sql.DataSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,6 +50,29 @@ class UserRepositoryTest {
         assertTrue(user.getId() > 0);
         assertNotNull(actual);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void checkUserOnUniquenessByLoginTest() {
+        User user1 = new User();
+        user1.setFirstName("Oleg");
+        user1.setLastName("Orlov");
+        user1.setLogin("info@olegorlov.com");
+        user1.setPassword(passwordEncoder.encode("12345"));
+        user1.setRole(roleRepository.getById(2L));
+        userRepository.save(user1);
+        assertTrue(user1.getId() > 0);
+
+        User user2 = new User();
+        user2.setFirstName("Oleg1");
+        user2.setLastName("Orlov1");
+        user2.setLogin("info@olegorlov.com");
+        user2.setPassword(passwordEncoder.encode("123451"));
+        user2.setRole(roleRepository.getById(2L));
+        assertThrows(
+                DataIntegrityViolationException.class,
+                () -> userRepository.save(user2)
+        );
     }
 
 }
