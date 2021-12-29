@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1640756093662-1
+      id: 1640771407336-1
       author: oleg (generated)
       changes:
         - createTable:
@@ -30,7 +30,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: apartment_house_addresses
   - changeSet:
-      id: 1640756093662-2
+      id: 1640771407336-2
       author: oleg (generated)
       changes:
         - createTable:
@@ -60,7 +60,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: apartments
   - changeSet:
-      id: 1640756093662-3
+      id: 1640771407336-3
       author: oleg (generated)
       changes:
         - createTable:
@@ -90,7 +90,7 @@ databaseChangeLog:
                   type: numeric(10, 2)
             tableName: bills
   - changeSet:
-      id: 1640756093662-4
+      id: 1640771407336-4
       author: oleg (generated)
       changes:
         - createTable:
@@ -114,7 +114,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: contacts
   - changeSet:
-      id: 1640756093662-5
+      id: 1640771407336-5
       author: oleg (generated)
       changes:
         - createTable:
@@ -154,7 +154,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: debt_histories
   - changeSet:
-      id: 1640756093662-6
+      id: 1640771407336-6
       author: oleg (generated)
       changes:
         - createTable:
@@ -179,7 +179,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: personal_accounts
   - changeSet:
-      id: 1640756093662-7
+      id: 1640771407336-7
       author: oleg (generated)
       changes:
         - createTable:
@@ -209,7 +209,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: persons
   - changeSet:
-      id: 1640756093662-8
+      id: 1640771407336-8
       author: oleg (generated)
       changes:
         - createTable:
@@ -229,7 +229,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: roles
   - changeSet:
-      id: 1640756093662-9
+      id: 1640771407336-9
       author: oleg (generated)
       changes:
         - createTable:
@@ -253,7 +253,7 @@ databaseChangeLog:
                   type: VARCHAR(255)
             tableName: service_providers
   - changeSet:
-      id: 1640756093662-10
+      id: 1640771407336-10
       author: oleg (generated)
       changes:
         - createTable:
@@ -291,7 +291,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: users
   - changeSet:
-      id: 1640756093662-11
+      id: 1640771407336-11
       author: oleg (generated)
       changes:
         - createTable:
@@ -312,7 +312,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: apartment_service_provider
   - changeSet:
-      id: 1640756093662-12
+      id: 1640771407336-12
       author: oleg (generated)
       changes:
         - createTable:
@@ -335,7 +335,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: bank_accounts
   - changeSet:
-      id: 1640756093662-13
+      id: 1640771407336-13
       author: oleg (generated)
       changes:
         - createTable:
@@ -356,7 +356,28 @@ databaseChangeLog:
                   type: BIGINT
             tableName: personal_account_debt_history
   - changeSet:
-      id: 1640756093662-14
+      id: 1640771407336-14
+      author: oleg (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: service_provider_personal_account_pkey
+                  name: service_provider_id
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: service_provider_personal_account_pkey
+                  name: personal_account_id
+                  type: BIGINT
+            tableName: service_provider_personal_account
+  - changeSet:
+      id: 1640771407336-15
       author: oleg (generated)
       changes:
         - createTable:
@@ -377,7 +398,7 @@ databaseChangeLog:
                   type: BIGINT
             tableName: user_apartment
   - changeSet:
-      id: 1640756093662-15
+      id: 1640771407336-16
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -392,7 +413,7 @@ databaseChangeLog:
             referencedTableName: apartment_house_addresses
             validate: true
   - changeSet:
-      id: 1640756093662-16
+      id: 1640771407336-17
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -407,7 +428,7 @@ databaseChangeLog:
             referencedTableName: apartments
             validate: true
   - changeSet:
-      id: 1640756093662-17
+      id: 1640771407336-18
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -422,7 +443,7 @@ databaseChangeLog:
             referencedTableName: persons
             validate: true
   - changeSet:
-      id: 1640756093662-18
+      id: 1640771407336-19
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -437,7 +458,7 @@ databaseChangeLog:
             referencedTableName: apartments
             validate: true
   - changeSet:
-      id: 1640756093662-19
+      id: 1640771407336-20
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -452,7 +473,7 @@ databaseChangeLog:
             referencedTableName: users
             validate: true
   - changeSet:
-      id: 1640756093662-20
+      id: 1640771407336-21
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -467,7 +488,7 @@ databaseChangeLog:
             referencedTableName: debt_histories
             validate: true
   - changeSet:
-      id: 1640756093662-21
+      id: 1640771407336-22
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -482,7 +503,22 @@ databaseChangeLog:
             referencedTableName: personal_accounts
             validate: true
   - changeSet:
-      id: 1640756093662-22
+      id: 1640771407336-23
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: personal_account_id
+            baseTableName: service_provider_personal_account
+            constraintName: service_provider_personal_account_personal_account_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: personal_accounts
+            validate: true
+  - changeSet:
+      id: 1640771407336-24
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -497,7 +533,7 @@ databaseChangeLog:
             referencedTableName: roles
             validate: true
   - changeSet:
-      id: 1640756093662-23
+      id: 1640771407336-25
       author: oleg (generated)
       changes:
         - addUniqueConstraint:
@@ -505,7 +541,7 @@ databaseChangeLog:
             constraintName: roles_name_key
             tableName: roles
   - changeSet:
-      id: 1640756093662-24
+      id: 1640771407336-26
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -520,7 +556,7 @@ databaseChangeLog:
             referencedTableName: service_providers
             validate: true
   - changeSet:
-      id: 1640756093662-25
+      id: 1640771407336-27
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -535,7 +571,22 @@ databaseChangeLog:
             referencedTableName: service_providers
             validate: true
   - changeSet:
-      id: 1640756093662-26
+      id: 1640771407336-28
+      author: oleg (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: service_provider_id
+            baseTableName: service_provider_personal_account
+            constraintName: service_provider_personal_account_service_provider_id_fkey
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: NO ACTION
+            onUpdate: NO ACTION
+            referencedColumnNames: id
+            referencedTableName: service_providers
+            validate: true
+  - changeSet:
+      id: 1640771407336-29
       author: oleg (generated)
       changes:
         - addForeignKeyConstraint:
@@ -550,7 +601,7 @@ databaseChangeLog:
             referencedTableName: users
             validate: true
   - changeSet:
-      id: 1640756093662-27
+      id: 1640771407336-30
       author: oleg (generated)
       changes:
         - addUniqueConstraint:
