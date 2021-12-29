@@ -3,7 +3,6 @@ package com.softserve.kh05802java.osbb.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 public class PersonalAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +27,20 @@ public class PersonalAccount {
 
     @ManyToMany
     @JoinTable(name = "personal_account_debt_history",
-            joinColumns = { @JoinColumn(name = "debt_history_id") },
-            inverseJoinColumns = { @JoinColumn(name = "personal_account_id") })
-    private Set<DebtHistory> products = new HashSet<DebtHistory>();
+            joinColumns = {
+                    @JoinColumn(
+                            name = "personal_account_id",
+                            foreignKey = @ForeignKey(name = "personal_account_debt_history_personal_account_id_fkey")
+                    )
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "debt_history_id",
+                            foreignKey = @ForeignKey(name = "personal_account_debt_history_debt_history_id_fkey")
+                    )
+            })
+    private Set<DebtHistory> debtHistories = new HashSet<>();
+
+    @ManyToMany(mappedBy = "personalAccounts")
+    private Set<ServiceProvider> serviceProviders;
 }
