@@ -3,10 +3,12 @@ databaseChangeLog: #параметр в котором находятся миг
   #      name: table_name
   #      value: "role"
 
-  - includeAll:
-      path: classpath*:/db/changelog/changeset/
+#  - includeAll:
+#      path: classpath*:/db/changelog/changeset/
 #      errorIfMissingOrEmpty: false
 
+  - include: # список активных миграций
+      file: classpath:/db/changelog/changeset/dbchangelog.yaml # путь к файлу миграции
 #  - include: # список активных миграций
 #      file: classpath:/db/changelog/changeset/001-dbchangelog.yaml # путь к файлу миграции
 #  - include:
