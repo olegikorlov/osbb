@@ -12,14 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class PersonRepositoryTest {
+
     private final PersonRepository personRepository;
 
     @Autowired
     PersonRepositoryTest(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
-
-
 
     @Test
     void findLastName() {
@@ -38,8 +37,8 @@ class PersonRepositoryTest {
         Person person = new Person();
         person.setFirstName("Klavdija");
         person.setLastName("Shulzenko");
-        Person actual = personRepository.save(person);
-        assertNotNull(actual);
+        personRepository.save(person);
+        assertTrue(person.getId() > 0);
     }
     
     @Test
@@ -61,4 +60,5 @@ class PersonRepositoryTest {
     void delete() {
 
     }
+
 }
